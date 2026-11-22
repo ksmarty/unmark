@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Loader2, Settings2, Sparkles, UploadCloud } from "lucide-react";
+import { KeyRound, Loader2, Settings2, Sparkles, UploadCloud } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Queue } from "@/components/Queue";
 import { SettingsPanel } from "@/components/SettingsPanel";
@@ -127,10 +127,22 @@ export default function App() {
           <Button
             size="md"
             className="flex-1"
-            disabled={!apiKey || busy || pending === 0}
-            onClick={() => (apiKey ? void runAll() : setKeyDialogOpen(true))}
+            disabled={Boolean(apiKey) && (busy || pending === 0)}
+            onClick={() => {
+              if (!apiKey) {
+                setKeyDialogOpen(true);
+                return;
+              }
+              void runAll();
+            }}
           >
-            {busy ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />}
+            {!apiKey ? (
+              <KeyRound className="size-4" />
+            ) : busy ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <Sparkles className="size-4" />
+            )}
             <span className="truncate">
               {!apiKey
                 ? "Connect OpenRouter"

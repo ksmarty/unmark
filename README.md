@@ -117,6 +117,7 @@ src/
     ratio.ts                 aspect-ratio maths ("auto" = closest ratio)
     db.ts                    IndexedDB blob storage
     demo.ts                  bundled sample scenes for demo mode
+    brand.ts                 logo glyph + generated favicon (single source of truth)
     download.ts, presets.ts, utils.ts
 public/
   demo/                      sample before/after photos used by demo mode
@@ -133,3 +134,5 @@ tests/
 - Reference support varies: 5–20 images depending on the model, and some models accept none.
 - Very long edge cases (odd formats, 1-bit PNGs, animated files) are rejected with a message
   instead of failing silently.
+- The favicon is generated at runtime from the same path data as the header logo
+  (`src/lib/brand.ts`), so there is no binary icon in the repo to keep in sync.

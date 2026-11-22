@@ -4,7 +4,10 @@ import ReactDOM from "react-dom/client";
 import { Toaster } from "sonner";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import App from "@/App";
+import { installFavicon } from "@/lib/brand";
 import "@/index.css";
+
+installFavicon();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

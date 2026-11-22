@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ImagePlus, RotateCcw, Sparkles, X } from "lucide-react";
+import { ImagePlus, KeyRound, RotateCcw, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge, AspectGlyph, Select, Textarea, Tooltip } from "@/components/ui/primitives";
 import { useStore, MAX_REFS, ensureModelCapabilities } from "@/lib/store";
@@ -43,6 +43,8 @@ export function SettingsPanel() {
   const jobs = useStore((state) => state.jobs);
   const runAll = useStore((state) => state.runAll);
   const setKeyDialogOpen = useStore((state) => state.setKeyDialogOpen);
+  const setSettingsOpen = useStore((state) => state.setSettingsOpen);
+  const keyInfo = useStore((state) => state.keyInfo);
   const refInput = React.useRef<HTMLInputElement>(null);
 
   const caps = models.find((model) => model.id === settings.model) ?? models[0];
@@ -68,6 +70,36 @@ export function SettingsPanel() {
 
   return (
     <div className="flex flex-col">
+      {/* Mobile only — the header hides the key button on phones, so keep it reachable here. */}
+      <section className="flex items-center gap-2.5 border-b border-line px-4 py-3 lg:hidden">
+        <span
+          className={cn(
+            "grid size-8 shrink-0 place-items-center rounded-lg border",
+            settings.apiKey ? "border-accent/40 bg-accent-soft text-accent" : "border-line bg-ink-1 text-faint",
+          )}
+        >
+          <KeyRound className="size-4" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-[12px] font-medium text-fg">
+            {settings.apiKey ? keyInfo?.label || "OpenRouter connected" : "No API key yet"}
+          </p>
+          <p className="truncate text-[10.5px] text-faint">
+            {settings.apiKey ? "Saved in this browser only" : "The demo works without one"}
+          </p>
+        </div>
+        <Button
+          size="xs"
+          variant={settings.apiKey ? "secondary" : "primary"}
+          onClick={() => {
+            setSettingsOpen(false);
+            setKeyDialogOpen(true);
+          }}
+        >
+          {settings.apiKey ? "Manage" : "Connect"}
+        </Button>
+      </section>
+
       <Section title="Prompt" first aside={
         <button
           type="button"
