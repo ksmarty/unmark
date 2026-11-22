@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-ink-0: #08080a;
+  --color-ink-1: #0c0c10;
+  --color-ink-2: #111117;
+  --color-ink-3: #171720;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+  --color-fg: #f3f3f5;
+  --color-muted: #a3a3b0;
+  --color-faint: #74747f;
+  --color-accent: #d7ff4f;
+  --color-accent-soft: rgba(215, 255, 79, 0.12);
+  --color-accent-ink: #101400;
+  --color-danger: #ff7a6b;
+  --color-warn: #ffc86b;
+  --color-info: #9ba7ff;
+
+  --radius-card: 1.15rem;
+  --shadow-lift: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
+  --shadow-accent: 0 12px 32px -12px rgba(215, 255, 79, 0.35);
+
+  --animate-rise: rise 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade: fade 0.25s ease both;
+  --animate-sheen: sheen 2.4s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheen {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-ink-0 text-fg font-sans antialiased;
+    min-height: 100dvh;
+    background-image:
+      radial-gradient(1100px 620px at 12% -8%, rgba(215, 255, 79, 0.075), transparent 62%),
+      radial-gradient(900px 520px at 88% -4%, rgba(110, 112, 255, 0.11), transparent 60%),
+      radial-gradient(1200px 800px at 50% 120%, rgba(120, 120, 150, 0.05), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(215, 255, 79, 0.3);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(215, 255, 79, 0.75);
+    outline-offset: 2px;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+
+  textarea {
+    field-sizing: content;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(15, 15, 20, 0.72);
+    backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .checker {
+    background-color: #14141a;
+    background-image:
+      linear-gradient(45deg, rgba(255, 255, 255, 0.055) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255, 255, 255, 0.055) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.055) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.055) 75%);
+    background-size: 22px 22px;
+    background-position:
+      0 0,
+      0 11px,
+      11px -11px,
+      -11px 0;
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mask-fade-r {
+    mask-image: linear-gradient(to right, black 85%, transparent);
+  }
+
+  .safe-bottom {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  /* Compare stage: sized from the result aspect ratio, capped by viewport height. */
+  .compare-stage {
+    aspect-ratio: var(--stage-ratio, 1.5);
+    width: min(100%, calc(52vh * var(--stage-ratio, 1.5)));
+  }
+
+  @media (min-width: 640px) {
+    .compare-stage {
+      width: min(100%, calc(62vh * var(--stage-ratio, 1.5)));
+    }
+  }
+}
