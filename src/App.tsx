@@ -87,13 +87,13 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-dvh">
+    <div className="flex min-h-dvh flex-col lg:h-dvh lg:min-h-0 lg:overflow-hidden">
       <Header />
 
-      <main className="mx-auto w-full max-w-[1440px] px-4 pb-28 lg:px-8 lg:pb-12">
-        <div className="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-[minmax(0,1fr)_372px] lg:items-start lg:gap-7 lg:pt-7">
-          <div className="min-w-0 space-y-4">
-            <div className="mb-1 flex flex-wrap items-end justify-between gap-3">
+      <main className="mx-auto w-full max-w-[1440px] px-4 pb-28 lg:min-h-0 lg:flex-1 lg:overflow-hidden lg:px-8 lg:pb-6">
+        <div className="grid grid-cols-1 gap-6 pt-5 lg:h-full lg:min-h-0 lg:grid-cols-[minmax(0,1fr)_372px] lg:items-start lg:gap-7 lg:pt-6">
+          <div className="min-w-0 space-y-4 lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:space-y-0 lg:gap-4">
+            <div className="mb-1 flex flex-wrap items-end justify-between gap-3 lg:mb-0 lg:shrink-0">
               <div className="min-w-0">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent/80">
                   Client-side · OpenRouter
@@ -107,11 +107,13 @@ export default function App() {
                 </p>
               </div>
             </div>
-            <Queue />
+            <div className="min-w-0 lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:overscroll-contain lg:pb-1 lg:pr-1">
+              <Queue />
+            </div>
           </div>
 
-          <aside className="hidden lg:block">
-            <div className="no-scrollbar sticky top-[84px] max-h-[calc(100dvh-6.5rem)] overflow-y-auto overscroll-contain rounded-card border border-line bg-ink-2/60 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+          <aside className="hidden lg:block lg:h-full lg:min-h-0">
+            <div className="no-scrollbar h-full overflow-y-auto overscroll-contain rounded-card border border-line bg-ink-2/60 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl">
               <SettingsPanel />
             </div>
           </aside>

@@ -92,7 +92,7 @@ export function Queue() {
               body: "Drag the slider over each result, then save the ones you like.",
             },
           ].map((step, index) => (
-            <div key={step.title} className="rounded-card border border-line bg-ink-2/40 p-4">
+            <div key={step.title} className="rounded-card border border-line bg-ink-2/40 p-4 lg:p-3.5">
               <span className="mb-2 inline-grid size-6 place-items-center rounded-md border border-line bg-ink-3 text-[11px] font-semibold text-accent">
                 {index + 1}
               </span>

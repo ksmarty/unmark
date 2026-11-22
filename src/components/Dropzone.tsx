@@ -95,7 +95,7 @@ export function Dropzone({ compact }: { compact: boolean }) {
       }}
       onDrop={onDrop}
       className={cn(
-        "relative overflow-hidden rounded-card border border-dashed p-8 text-center transition-colors sm:p-12",
+        "relative overflow-hidden rounded-card border border-dashed p-8 text-center transition-colors sm:p-10 lg:p-7",
         dragging
           ? "border-accent/60 bg-accent-soft"
           : "border-line-strong bg-ink-2/40 hover:border-line-strong",
@@ -103,7 +103,7 @@ export function Dropzone({ compact }: { compact: boolean }) {
     >
       {input}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-      <div className="mx-auto mb-5 grid size-14 place-items-center rounded-2xl border border-line bg-ink-3 text-accent shadow-inner">
+      <div className="mx-auto mb-5 grid size-14 place-items-center rounded-2xl border border-line bg-ink-3 text-accent shadow-inner lg:mb-4 lg:size-12">
         {importing ? <Loader2 className="size-6 animate-spin" /> : <UploadCloud className="size-6" />}
       </div>
       <h2 className="text-lg font-semibold tracking-tight text-fg sm:text-xl">
@@ -113,13 +113,13 @@ export function Dropzone({ compact }: { compact: boolean }) {
         Batch as many as you like. Each image is redrawn by an image model, so the watermark is
         reconstructed out of the picture instead of being blurred over.
       </p>
-      <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
+      <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row lg:mt-5">
         <Button size="lg" onClick={pick} loading={importing > 0} className="w-full sm:w-auto">
           <ImagePlus className="size-4" /> Choose images
         </Button>
         <span className="text-[11.5px] text-faint">PNG · JPEG · WebP · {formatBytes(MAX_FILE_BYTES)} max</span>
       </div>
-      <p className="mt-6 text-[11px] text-faint/80">Tip: you can also paste an image from your clipboard.</p>
+      <p className="mt-6 text-[11px] text-faint/80 lg:mt-4 lg:[@media(max-height:820px)]:hidden">Tip: you can also paste an image from your clipboard.</p>
     </div>
   );
 }

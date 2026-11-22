@@ -33,7 +33,7 @@ export function Header() {
   const connected = Boolean(settings.apiKey);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-ink-0/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-30 shrink-0 border-b border-line bg-ink-0/85 backdrop-blur-xl lg:static">
       <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-3 px-4 lg:px-8">
         <div className="flex min-w-0 items-center gap-2.5">
           <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-accent text-accent-ink shadow-[0_10px_26px_-12px_rgba(215,255,79,0.9)]">

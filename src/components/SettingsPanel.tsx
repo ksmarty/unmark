@@ -19,7 +19,7 @@ function Section({
   first?: boolean;
 }) {
   return (
-    <section className={cn("px-4 py-4", !first && "border-t border-line")}>
+    <section className={cn("px-4 py-3.5", !first && "border-t border-line")}>
       <div className="mb-3 flex items-center justify-between gap-2">
         <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-faint">{title}</h3>
         {aside}
@@ -133,7 +133,7 @@ export function SettingsPanel() {
         <Textarea
           value={settings.prompt}
           onChange={(event) => saveSettings({ prompt: event.target.value })}
-          rows={7}
+          rows={5}
           spellCheck={false}
           className="text-[12.5px]"
           placeholder="Describe what to keep and what to remove…"
@@ -358,7 +358,7 @@ export function SettingsPanel() {
         </p>
       </Section>
 
-      <div className="border-t border-line p-4">
+      <div className="sticky bottom-0 z-10 rounded-b-card border-t border-line bg-ink-2/95 p-4 backdrop-blur-xl">
         {settings.apiKey ? (
           <Button
             size="lg"
